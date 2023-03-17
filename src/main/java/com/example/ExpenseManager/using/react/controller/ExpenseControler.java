@@ -20,14 +20,14 @@ public class ExpenseControler {
 
     @CrossOrigin
     @GetMapping("/getExpenses")
-    public List<Expense> getExpenses(){
+    public List<Expense> getExpenses() {
         return expenseRepository.findAll();
+    }
 
-
-//        Criteria criteria = new Criteria();
-//        Query query = new Query();
-//        query.addCriteria(criteria);
-//        return mongoTemplate.query(Expense.class).as(String.class).matching(criteria).all();
+    @GetMapping("")
+    public List<Expense> start() {
+        System.out.println("Service is up");
+        return expenseRepository.findAll();
     }
 
     @CrossOrigin
