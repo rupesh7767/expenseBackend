@@ -1,4 +1,18 @@
-FROM openjdk:18
-WORKDIR /home/rupesh/IdeaProjects/ExpenseManager
-COPY . /home/rupesh/IdeaProjects/ExpenseManager
-CMD ["java","-jar","ExpenseManager-0.0.1-SNAPSHOT.jar"]
+#
+# Build stage
+#
+FROM maven:3.8.2-jdk-11 AS build
+COPY . .
+RUN mvn clean package -DskipTests
+
+
+#
+# Package stage
+#
+FROM openjdk:1.8
+COPY --from=build /target/ExpenseManager-0.0.1-SNAPSHOT.jar ExpenseManager.jar
+
+# ENV PORT=8080
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","ExpenseManager.jar"]
+
