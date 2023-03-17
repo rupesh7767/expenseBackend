@@ -9,7 +9,7 @@ RUN mvn clean package -DskipTests
 #
 # Package stage
 #
-FROM openjdk:1.8
+FROM openjdk:11-jdk-slim
 COPY --from=build /target/ExpenseManager-0.0.1-SNAPSHOT.jar ExpenseManager.jar
 
 # ENV PORT=8080
