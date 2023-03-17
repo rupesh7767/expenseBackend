@@ -1,0 +1,8 @@
+version :'3'
+service:
+  mongo:
+    image: mongo
+    restart: always
+
+  appservice:
+    build: ./Expen
