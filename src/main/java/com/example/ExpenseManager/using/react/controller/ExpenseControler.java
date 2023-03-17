@@ -35,4 +35,11 @@ public class ExpenseControler {
     public void saveExpens(@RequestBody Expense expense){
         expenseRepository.save(expense);
     }
+
+    @CrossOrigin
+    @PostMapping("/deleteExpensesByTitle")
+    public void deleteExpensesByTitle(@RequestBody Expense expense){
+
+        expenseRepository.deleteExpensesByTitle(expense.getTitle());
+    }
 }
