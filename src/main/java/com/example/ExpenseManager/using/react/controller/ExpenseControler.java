@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin
 @RestController
 public class ExpenseControler {
 
@@ -18,9 +18,9 @@ public class ExpenseControler {
     @Autowired
     ExpenseRepository expenseRepository;
 
-    @CrossOrigin
-    @GetMapping("/getExpenses")
+    @RequestMapping("/getExpenses")
     public List<Expense> getExpenses() {
+        System.out.println("Inside getExpenses");
         return expenseRepository.findAll();
     }
 
@@ -30,15 +30,17 @@ public class ExpenseControler {
         return expenseRepository.findAll();
     }
 
-    @CrossOrigin
     @PostMapping("/saveExpenses")
     public void saveExpens(@RequestBody Expense expense){
+
+        System.out.println("Inside saveExpenses");
         expenseRepository.save(expense);
     }
 
-    @CrossOrigin
-    @PostMapping("/deleteExpensesByTitle")
+    @DeleteMapping("/deleteExpensesByTitle")
     public void deleteExpensesByTitle(@RequestBody Expense expense){
+
+        System.out.println("Inside deleteExpenses");
 
         expenseRepository.deleteExpensesByTitle(expense.getTitle());
     }
